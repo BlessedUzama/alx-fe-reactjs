@@ -1,12 +1,11 @@
-
 import { Link } from "react-router-dom";
 
-const Navbar = () => {
+function Navbar() {
   return (
     <nav
       style={{
         backgroundColor: "#121212",
-        display: "block",
+        display: "flex",
         justifyContent: "center",
       }}
     >
