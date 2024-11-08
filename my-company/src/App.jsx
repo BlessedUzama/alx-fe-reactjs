@@ -5,14 +5,14 @@ import Home from './components/Home';
 import About from './components/About';
 import Contact from './components/Contact';
 import Services from './components/Services';
-import NavBar from './components/NavBar';
+import Navbar from './components/NavBar';
 
 function App() {
   
 
   return (
     <>
-      <NavBar />
+      <Navbar />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
