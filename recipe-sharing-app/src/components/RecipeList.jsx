@@ -1,31 +1,28 @@
-import {link} from 'react-router-dom'
-import { useEffect } from 'react';
+import { Link } from "react-router-dom";
 import { useRecipeStore } from "./recipeStore";
-
+import { useEffect } from "react";
 
 const RecipeList = () => {
-  const { recipes, filteredRecipes, searchTerm, filterRecipe } = useRecipeStore(
-    (state) => ({
+  const { recipes, filteredRecipes, searchTerm, filterRecipes } =
+    useRecipeStore((state) => ({
       recipes: state.recipes,
       filteredRecipes: state.filteredRecipes,
       searchTerm: state.searchTerm,
-      filterRecipe: state.filterRecipe
-    })
-  );
+      filterRecipes: state.filterRecipes,
+    }));
 
   useEffect(() => {
-    if (searchTerm.trim() === '') {
-      useRecipeStore.setState({ filteredRecipes: recipes})
+    if (searchTerm.trim() === "") {
+      useRecipeStore.setState({ filteredRecipes: recipes });
     } else {
-      filterRecipe();
+      filterRecipes();
     }
-  }[searchTerm, filterRecipe, recipes])
-
+  }, [searchTerm, filterRecipes, recipes]);
 
   return (
     <div>
       {filteredRecipes.length > 0 ? (
-        filteredRecipes.map(recipe => (
+        filteredRecipes.map((recipe) => (
           <div key={recipe.id}>
             <h3>{recipe.title}</h3>
             <p>{recipe.description}</p>
@@ -38,5 +35,4 @@ const RecipeList = () => {
     </div>
   );
 };
-
 export default RecipeList;
