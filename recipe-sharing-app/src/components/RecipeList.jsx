@@ -1,16 +1,40 @@
+import {link} from 'react-router-dom'
+import { useEffect } from 'react';
 import { useRecipeStore } from "./recipeStore";
 
+
 const RecipeList = () => {
-  const recipes = useRecipeStore((state) => state.recipes);
+  const { recipes, filteredRecipes, searchTerm, filterRecipe } = useRecipeStore(
+    (state) => ({
+      recipes: state.recipes,
+      filteredRecipes: state.filteredRecipes,
+      searchTerm: state.searchTerm,
+      filterRecipe: state.filterRecipe
+    })
+  );
+
+  useEffect(() => {
+    if (searchTerm.trim() === '') {
+      useRecipeStore.setState({ filteredRecipes: recipes})
+    } else {
+      filterRecipe();
+    }
+  }[searchTerm, filterRecipe, recipes])
+
 
   return (
     <div>
-      {recipes.map((recipe) => (
-        <div key={recipe.id}>
-          <h3>{recipe.title}</h3>
-          <p>{recipe.description}</p>
-        </div>
-      ))}
+      {filteredRecipes.length > 0 ? (
+        filteredRecipes.map(recipe => (
+          <div key={recipe.id}>
+            <h3>{recipe.title}</h3>
+            <p>{recipe.description}</p>
+            <Link to={`/recipe/${recipe.id}`}>View Details</Link>
+          </div>
+        ))
+      ) : (
+        <p>No recipes found For what you are looking for.</p>
+      )}
     </div>
   );
 };
