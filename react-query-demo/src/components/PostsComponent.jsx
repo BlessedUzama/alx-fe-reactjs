@@ -1,16 +1,19 @@
 import { useQuery } from 'react-query'
 
-const fetchData = async () => {
-    const response = await fetch("https://jsonplaceholder.typicode.com/posts");
-    return response.json();
+const fetchPosts = async () => {
+  const response = await fetch("https://jsonplaceholder.typicode.com/posts");
+  return response.json();
 };
 
 const PostComponent = () => {
-    const { data, error, isLoading, isFetching, refetch } = useQuery('fetchData', fetchData);
+    const { data, isError, isLoading, isFetching, refetch } = useQuery(
+      "fetchPosts",
+      fetchPosts
+    );
 
     if (isLoading) return <div>Loading...</div>;
 
-    if (error) return <div>Error loading data...</div>;
+    if (isError) return <div>Error loading data...</div>;
 
 
     return (
