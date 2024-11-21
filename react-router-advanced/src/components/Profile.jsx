@@ -1,4 +1,4 @@
-import {BrowserRouter as Router, Route, Switch, Link, useRouteMatch} from 'react-router-dom'
+import {BrowserRouter as Routes, Route, Switch, Link, useRouteMatch} from 'react-router-dom'
 import ProfileDetails from './ProfileDetails';
 import ProfileSettings from './ProfileSettings';
 
