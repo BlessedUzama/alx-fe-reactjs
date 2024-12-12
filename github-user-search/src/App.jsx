@@ -1,5 +1,6 @@
 
 import './App.css'
+import Search from './components/Search'
 
 function App() {
   
@@ -7,6 +8,8 @@ function App() {
   return (
     <>
       <h1>Github Search</h1>
+      <Search /> 
+      
     </>
   )
 }
